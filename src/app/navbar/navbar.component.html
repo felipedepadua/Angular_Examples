@@ -2,9 +2,23 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Followers</a></li>
-        <li><a href="#">Posts</a></li>
+        <!-- As the value for routerLinkActive, we include a list of CSS classes that should
+             be applied when this link is active 
+        -->
+        <li routerLinkActive="active current">
+          <!-- [queryParams] for optional parameters -->
+          <a routerLink="/followers" [queryParams]="{page: 1, order: 'newest'}">Followers</a>
+        </li>
+        <li routerLinkActive="active current">
+          <a routerLink="/posts">Posts</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+
+<!--
+  *** IMPORTANT: NEVER USE href: 
+    - THIS MAKES THE WHOLE PAGE TO BE DOWNLOAD AND MAKE ANGULAR RE-DOWNLOAD EVERYTHING [WHEN YOU CLICK ON THE LINK]
+    - YOU CAN CHECK THIS ON THE NETWORK TAB ON CHROME DEV TOOLS
+-->

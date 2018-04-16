@@ -59,7 +59,20 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      // (*) THE ORDER OF THESE ROUTES ARE IMPORTANT! 
+      // (The ** has to go at the end [otherwise, if we put first, we will only get a Not Found page)
+      // WE NEED TO PUT THE MOST SPECIFIC ROUTES ON THE TOP
+      // EX: followers/:username before followers [otherwise, it will all match followers]
+      { path: '', component: HomeComponent },
+      { path: 'followers/:id/:username', component: GithubProfileComponent },
+      { path: 'followers', component: GithubFollowersComponent },
+      { path: 'posts', component: PostsComponent },
+      { path: '**', component: NotFoundComponent } // ** is a wildcard(any URL in the address bar)
+    ]) //Define the root route for our application
+    // WHEN OUR APPLICATION GROWS, WE MIGHT HAVE MORE MODULES AND EACH HAS THEIR ROUTE
+    // AND INSTEAD OF USING forRoot, YOU WILL USE FOR CHILD
   ],
   providers: [
     PostService,

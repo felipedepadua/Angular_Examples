@@ -6,7 +6,12 @@
   </div>
   <div class="media-body">
     <h4 class="media-heading">
-      <a [queryParams]="{ foo: 'bar' }" [routerLink]="['/profile', follower.login, follower.id]">{{ follower.login }}</a>
+      <!-- When we are dealing with route params, instead of having routerLink as an attribute, we have
+           to use it the property binding syntax (wrap it with [])   
+           Then wrap the value in an array with the path (/followers) followed all the params (we only have 1)
+      -->
+      <a [routerLink]="['/followers', follower.id, follower.login]">{{ follower.login }}</a>
+      <!-- Added username to improve URL readability and SEO -->
     </h4>
     <a href="follower.html_url">{{ follower.html_url }}</a>
   </div>
